@@ -63,3 +63,7 @@ target/
 
 #Editor
 .idea
+
+#Robot framework
+*.html
+*.xml
