@@ -20,17 +20,22 @@ class RasBot(object):
         #try:
         pybot_args = "".join(args[0])
         res = run(pybot_args)
+        print(res)
         if self.auto_mode:
             if res != 0:
                 GPIO.output(self.red_led, GPIO.HIGH)
-                time.sleep(15)
-                GPIO.output(self.red_led, GPIO.LOW)
+            else:
+                GPIO.output(self.green_led, GPIO.HIGH)
+            time.sleep(15)
         else:
             if res != 0:
                 GPIO.output(self.red_led, GPIO.HIGH)
-            ack = input("Press enter to confirm that you've seen the result, disable this message with setting auto_mode=True")
-            if res != 0:
-                GPIO.output(self.red_led, GPIO.LOW)
+            else:
+                GPIO.output(self.green_led, GPIO.HIGH)
+            input("Press enter to confirm that you've seen the result, disable this message with setting auto_mode=True")
+
+        GPIO.output(self.red_led, GPIO.LOW)
+        GPIO.output(self.green_led, GPIO.LOW)
         GPIO.cleanup()
 
     def set_auto_mode(self, val):
