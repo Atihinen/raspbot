@@ -5,7 +5,7 @@ Robot Framework pybot extension to raspberry pi to show test results with leds
 * Python 3.x
 * Pip packages: [check requirements.txt](requirements.txt)
 * Raspberry Pi
-** Tested on Raspberry Pi 2
+  * Tested on Raspberry Pi 2
 
 # Installation
 * Install python3 and pip
