@@ -18,8 +18,22 @@ class RasBot(object):
     def run(self, *args):
         res = None
         #try:
-        pybot_args = "".join(args[0])
-        res = run(pybot_args)
+        options = {}
+        data_sources = []
+        pybot_args = ""#.join(args[0])
+        for ind, arg in enumerate(args[0]):
+            if arg == "--dryrun":
+                options[arg] = ""
+            elif arg.startswith("-"):
+                try:
+                    options[arg]=args[ind+1]
+                    args[ind]=""
+                    args[ind+1]=""
+                except IndexError:
+                    pass
+            elif arg.startswith("/") or arg.startswith("./"):
+                data_sources.append(arg)
+        res = run(data_sources, options)
         print(res)
         if self.auto_mode:
             if res != 0:
